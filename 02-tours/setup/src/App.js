@@ -1,11 +1,24 @@
-import React, { useState, useEffect } from 'react'
-import Loading from './Loading'
-import Tours from './Tours'
-// ATTENTION!!!!!!!!!!
-// I SWITCHED TO PERMANENT DOMAIN
-const url = 'https://course-api.com/react-tours-project'
+import React from 'react'
+import Loading from './components/Loading'
+import Tours from './components/Tours'
+import useTours from './hooks/useTours';
+import { Title } from './components/Title';
+
+const API_URL = 'https://course-api.com/react-tours-project';
+
 function App() {
-  return <h2>Tours Project Setup</h2>
+  const { data, loading, removeById, refreshData } = useTours(API_URL);
+
+  if (loading) return <Loading />;
+
+  return (
+    <main>
+      <section>
+        <Title tours={data} onRefresh={refreshData}/>
+        <Tours tours={data} onRemove={removeById} />
+      </section>
+    </main>
+  )
 }
 
 export default App
