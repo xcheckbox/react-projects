@@ -1,7 +1,16 @@
 import React from 'react';
-import Review from './Review';
+import Review from './components/Review';
+import { Title } from './components/Title';
+
 function App() {
-  return <h2>reviews project setup</h2>;
+  return (
+    <main>
+      <section className="container">
+        <Title />
+        <Review />
+      </section>
+    </main>
+  );
 }
 
 export default App;
