@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { FaAngleDoubleRight } from 'react-icons/fa'
 import { Loading } from './components/Loading';
 import { useFetch } from './hooks/useFetch';
@@ -30,7 +30,7 @@ function App() {
             companies?.map( (company, idx) => (
               <button
                 key={`${company}-${id}`}
-                className={`job-btn ${(idx == jobIdx) && 'active-btn'}`}
+                className={`job-btn ${(idx === jobIdx) && 'active-btn'}`}
                 onClick={() => setJobIdx(idx)}
               >
                 {company}
