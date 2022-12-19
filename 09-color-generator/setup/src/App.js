@@ -10,7 +10,6 @@ function App() {
   const [selectedColor, setSelectedColor] = useState(DEFAULT_COLOR)
 
   useEffect(() => {
-    console.log('UPDATINF COLOR')
     setColors(colorsGenerator(selectedColor))
   }, [selectedColor])
 
@@ -43,10 +42,12 @@ function App() {
       <div className='colors'>
         {
           colors?.map( color => {
-            const { alpha, rgb, type, weight } = color;
+            const { type, weight } = color;
+            
             return (
              <SingleColor
               {...color}
+              key={`${type}-${weight}`}
               hexColor={color.hex}
             />
             )
