@@ -1,9 +1,10 @@
 import React from 'react'
 import CartItem from './CartItem'
-import { useGlobalContext } from './context'
+import { useGlobalContext } from '../context/context'
 
 const CartContainer = () => {
   const { cart } = useGlobalContext()
+  
   if (cart.length === 0) {
     return (
       <section className='cart'>
