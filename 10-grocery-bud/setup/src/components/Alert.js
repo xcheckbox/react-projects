@@ -11,7 +11,7 @@ const Alert = ({ alertData, setAlert }) => {
     return () => {
       clearTimeout(timeoutId);
     }
-  }, [])
+  }, [setAlert])
 
   return (
     <>
