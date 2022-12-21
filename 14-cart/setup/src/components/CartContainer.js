@@ -1,9 +1,10 @@
 import React from 'react'
 import CartItem from './CartItem'
-import { useGlobalContext } from './context'
+import { useGlobalContext } from '../context/context'
 
 const CartContainer = () => {
-  const { cart } = useGlobalContext()
+  const { cart, clearCart, total } = useGlobalContext()
+  
   if (cart.length === 0) {
     return (
       <section className='cart'>
@@ -32,12 +33,12 @@ const CartContainer = () => {
         <hr />
         <div className='cart-total'>
           <h4>
-            total <span>$0.00</span>
+            total <span>${total.toFixed(2)}</span>
           </h4>
         </div>
         <button
           className='btn clear-btn'
-          onClick={() => console.log('clear cart')}
+          onClick={() => clearCart()}
         >
           clear cart
         </button>
