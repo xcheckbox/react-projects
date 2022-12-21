@@ -1,24 +1,18 @@
-
-
 import {
-  INCREASE,
-  DECREASE,
+  DECREASE_INCREASE,
   REMOVE_ITEM,
   SHOW_ITEMS,
-  LOADING
+  LOADING,
+  CLEAR_CART,
+  TOTAL_CART,
 } from '../redux/types';
 
 export const useActionTypes = (dispatch) => {
 
-  const increase = () => {
+  const decreaseIncrease = (payload) => {
     dispatch({
-      type: INCREASE
-    })
-  }
-
-  const decrease = () => {
-    dispatch({
-      type: DECREASE
+      type: DECREASE_INCREASE,
+      payload
     })
   }
 
@@ -43,11 +37,24 @@ export const useActionTypes = (dispatch) => {
     })
   }
 
+  const clearCart = () => {
+    dispatch({
+      type: CLEAR_CART
+    })
+  }
+
+  const totalCart = () => {
+    dispatch({
+      type: TOTAL_CART
+    })
+  }
+
   return  {
-    increase,
-    decrease,
+    decreaseIncrease,
     removeItem,
     showItems,
-    loading
+    loading,
+    clearCart,
+    totalCart
   }
 }

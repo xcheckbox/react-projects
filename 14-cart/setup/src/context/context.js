@@ -1,5 +1,4 @@
-import React, { useState, useContext, useReducer, useEffect } from 'react'
-import { useFetch } from '../hooks/useFetch'
+import React, { useContext, useReducer, useEffect } from 'react'
 import reducer from '../redux/reducer'
 import cartItems from '../data';
 import { useActionTypes } from '../hooks/useActionTypes';
@@ -18,16 +17,23 @@ const AppProvider = ({ children }) => {
   const [ cartState, dispatch ] = useReducer(reducer, initialState);
   
   const {
-    decrease,
-    increase,
+    decreaseIncrease,
     removeItem,
     showItems,
     loading,
+    clearCart,
+    totalCart
   } = useActionTypes(dispatch);
 
   useEffect(() => {
     fetchData();
-  }, []);
+    // eslint-disable-next-line
+  }, []); 
+
+  useEffect(() => {
+    totalCart();
+    // eslint-disable-next-line
+  }, [cartState.cart]) 
 
 
   const fetchData = async () => {
@@ -48,9 +54,9 @@ const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         ...cartState,
-        decrease,
-        increase,
-        removeItem
+        decreaseIncrease,
+        removeItem,
+        clearCart
       }}
     >
       {children}
