@@ -4,8 +4,14 @@ import logo from '../logo.svg'
 
 const Navbar = () => {
   return (
-    <div>
-      <h2>navbar component</h2>
+    <div className='navbar'>
+      <div className='nav-center'>
+        <img className='logo' src={logo} alt='TheCocktailDB' />
+        <ul className='nav-links'>
+          <li><a>Home</a></li>
+          <li><a>About</a></li>
+        </ul>
+      </div>
     </div>
   )
 }

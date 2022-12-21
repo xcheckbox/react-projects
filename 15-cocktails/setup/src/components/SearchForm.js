@@ -3,8 +3,14 @@ import { useGlobalContext } from '../context'
 
 const SearchForm = () => {
   return (
-    <div>
-      <h2>search form component</h2>
+    <div className='section search'>
+      <div className='search-form'>
+       <div className='form-control'>
+          <label>Search your favorite cocktail</label>
+          <input />
+       </div>
+
+      </div>
     </div>
   )
 }
