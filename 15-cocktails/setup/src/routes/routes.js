@@ -19,8 +19,8 @@ export const routes = [
     display: true
   },
   {
-    to: '/detail/:id',
-    path: 'detail',
+    to: '/cocktail/:id',
+    path: 'cocktail/:id',
     Component: SingleCocktail,
     name: 'SingleCocktail',
   },

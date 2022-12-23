@@ -1,9 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { CocktailAdapter } from '../adapter/cocktailAdapter';
 
 const Cocktail = ({ cocktail }) => {
-  const { id, name, image, glass, type } = CocktailAdapter(cocktail);
+  const { id, name, image, glass, type } = cocktail;
 
   return (
     <div className='cocktail'>

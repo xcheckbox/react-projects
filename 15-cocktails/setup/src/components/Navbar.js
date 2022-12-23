@@ -13,7 +13,7 @@ const Navbar = () => {
         <ul className='nav-links'>
           {
             routes.map(({ to, name, display}) => display && (
-              <li>
+              <li key={name}>
                 <Link to={to}>{name}</Link>
               </li>
             ))

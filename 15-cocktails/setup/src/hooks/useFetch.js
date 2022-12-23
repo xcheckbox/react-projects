@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import { CocktailAdapter } from '../adapter/cocktailAdapter';
 
-export const useFetch = (url) => {
+export const useFetch = (url, Adapter = CocktailAdapter) => {
   const [ data, setData ] = useState([]);
   const [ loading, setLoading ] = useState(false);
 
@@ -15,7 +16,7 @@ export const useFetch = (url) => {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      setData(data);
+      setData(Adapter(data));
     } catch (error) {
       setData([]);
     }

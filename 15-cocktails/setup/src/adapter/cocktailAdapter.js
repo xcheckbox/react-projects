@@ -1,10 +1,13 @@
 
-export const CocktailAdapter = (cocktail) => {
-  return {
-    id: cocktail.idDrink,
-    name: cocktail.strDrink,
-    glass: cocktail.strGlass,
-    type: cocktail.strAlcoholic,
-    image: cocktail.strDrinkThumb
-  }
+export const CocktailAdapter = (data) => {
+
+  const { drinks } = data;
+
+  return drinks.map( drink => ({
+      id: drink.idDrink,
+      name: drink.strDrink,
+      glass: drink.strGlass,
+      type: drink.strAlcoholic,
+      image: drink.strDrinkThumb
+  }))
 }
