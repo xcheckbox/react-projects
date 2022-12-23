@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Loading from '../components/Loading'
 import { useParams, Link } from 'react-router-dom'
 import { useFetch } from '../hooks/useFetch'
@@ -9,7 +9,12 @@ const url = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i='
 const SingleCocktail = () => {
 
   const { id } = useParams();
-  const [ cocktail, loading] = useFetch(`${url}${id}`, CocktailDetailAdapter);
+  const [ cocktail, loading, getDrink] = useFetch(CocktailDetailAdapter);
+
+  useEffect(() => {
+    getDrink(`${url}${id}`)
+    // eslint-disable-next-line
+  }, [])
 
   if(loading) return <Loading />
 
@@ -52,7 +57,7 @@ const SingleCocktail = () => {
           </p>
           <p>
             <span className='drink-data'>ingredients:</span>
-            { ingredients.join(' ') }
+            { ingredients?.join(' ') }
           </p>
         </div>
       </div>
