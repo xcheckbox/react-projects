@@ -12,7 +12,9 @@ const Cocktail = ({ cocktail }) => {
         <h3>{ name }</h3>
         <h4>{ glass }</h4>
         <p>{ type }</p>
-        <button className='btn btn-primary'>Details</button>
+        <Link to={`cocktail/${id}`}>
+          <button className='btn btn-primary'>Details</button>
+        </Link>
       </div>
     </div>
   )

@@ -8,14 +8,11 @@ import Error from './pages/Error'
 import Navbar from './components/Navbar'
 import SearchForm from './components/SearchForm'
 import CocktailList from './components/CocktailList'
+import { AppRouter } from './routes'
 function App() {
   return (
     <div>
-      <Navbar />
-
-      <SearchForm />
-
-      <CocktailList />
+      <AppRouter />
     </div>
   )
 }

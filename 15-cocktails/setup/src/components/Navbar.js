@@ -1,15 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../logo.svg'
+import { routes } from '../routes/routes'
 
 const Navbar = () => {
   return (
     <div className='navbar'>
       <div className='nav-center'>
-        <img className='logo' src={logo} alt='TheCocktailDB' />
+        <Link to={'/'}>
+          <img className='logo' src={logo} alt='TheCocktailDB' />
+        </Link>
         <ul className='nav-links'>
-          <li><a>Home</a></li>
-          <li><a>About</a></li>
+          {
+            routes.map(({ to, name, display}) => display && (
+              <li>
+                <Link to={to}>{name}</Link>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>
