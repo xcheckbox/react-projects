@@ -1,7 +1,13 @@
 import React from 'react'
 
-const Follower = () => {
-  return <h2>follower component</h2>
+const Follower = ({ avatar_url, }) => {
+  return (
+    <div className='card'>
+      <img src={avatar_url} />
+      <h4>UserName</h4>
+      <a className='btn' target='_blank'>View profile</a>
+    </div>
+  )
 }
 
 export default Follower

@@ -9,12 +9,13 @@ export const useFetch = () => {
   const getProducts = async () => {
     const response = await fetch(url)
     const data = await response.json()
-    setData(data)
+    setData(paginate(data))
     setLoading(false)
   }
 
   useEffect(() => {
     getProducts()
   }, [])
+
   return { loading, data }
 }
