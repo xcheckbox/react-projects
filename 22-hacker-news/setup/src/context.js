@@ -39,7 +39,6 @@ const AppProvider = ({ children }) => {
   }
   
   useEffect(() => {
-    console.log('BUSCAR', {s: state.search, p: state.page})
     fetchData(`${API_ENDPOINT}query=${state.search}&page=${state.page}`)
   }, [state.page, state.search])
 
