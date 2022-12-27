@@ -2,27 +2,37 @@ import React from 'react'
 
 import { useGlobalContext } from './context'
 
-const stories = [1,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
-
 const Stories = () => {
+  const { loading, news, removeStory, dispatch } = useGlobalContext();
+  
+  if(loading) return (<div className='loading'></div>)
+
   return (
     <div className='stories'>
       {
-        stories.map( story => {
+        news.map( story => {
+          const { title, num_comments, author, points, objectID, url } = story;
           return (
-            <article className='story'>
-              <h4 className='title'>Title hdghdjdhjdhdj</h4>
+            <article className='story' key={objectID}>
+              <h4 className='title'>{ title }</h4>
               <p className='info'>
-                203030 pomit by
-                <span>
-                  dwwolelfe | 
-                </span>
-                6465
-                comments
+                {`${points} points by ${author} | ${num_comments} comments`}
               </p>
               <div>
-                <a className='read-link'>read more</a>
-                <button className='remove-btn'>remove</button>
+                <a
+                  href={url}
+                  target='_blank'
+                  className='read-link'
+                  rel='noopener noreferrer'
+                >
+                  read more
+                </a>
+                <button
+                  className='remove-btn'
+                  onClick={() => removeStory(dispatch, objectID)} 
+                >
+                  remove
+                </button>
               </div>
             </article>
           )

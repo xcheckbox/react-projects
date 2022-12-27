@@ -10,16 +10,22 @@ const reducer = (state, { type, payload }) => {
 
   switch (type) {
     case SET_LOADING:
-      return { ...state }
+      return { ...state, loading: payload }
     case SET_STORIES:
-      console.log(state, payload)
-      return { ...state }
+      return {
+        ...state,
+        news: payload.hits,
+        page: payload.page,
+        totalPages: payload.nbPages,
+        loading: false,
+    }
     case REMOVE_STORY:
-      return { ...state }
+      const newsFiltered = state.news.filter(item => item.objectID !== payload);
+      return { ...state, news: newsFiltered }
     case HANDLE_PAGE:
-      return { ...state }
+      return { ...state, page: payload }
     case HANDLE_SEARCH:
-      return { ...state }
+      return { ...state, search: payload, page: 0 }
     default:
       return { ...state };
   }

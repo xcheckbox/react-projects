@@ -1,13 +1,11 @@
 import React, { useContext, useEffect, useReducer, useState } from 'react'
 
 import {
-  SET_LOADING,
-  SET_STORIES,
-  REMOVE_STORY,
-  HANDLE_PAGE,
-  HANDLE_SEARCH,
   setLoading,
-  setStories
+  setStories,
+  handlePages,
+  removeStory,
+  handleSearch
 } from './actions';
 import reducer from './reducer'
 
@@ -17,14 +15,13 @@ const initialState = {
   loading: false,
   news: [],
   page: 0,
-  totalNews: 0
+  totalNews: 0,
+  search: 'react'
 }
 
 const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
-
-  const [ querySearch, setQuerySearch ] = useState('React')
   const [ state, dispatch ] = useReducer(reducer, initialState);
 
   const fetchData = async (url) => {
@@ -40,14 +37,19 @@ const AppProvider = ({ children }) => {
     }
     setLoading(dispatch, false);
   }
-
+  
   useEffect(() => {
-    fetchData(API_ENDPOINT)
-  }, [])
+    console.log('BUSCAR', {s: state.search, p: state.page})
+    fetchData(`${API_ENDPOINT}query=${state.search}&page=${state.page}`)
+  }, [state.page, state.search])
 
   return (
     <AppContext.Provider value={{
       ...state,
+      dispatch,
+      handlePages,
+      removeStory,
+      handleSearch
     }}>
       {children}
     </AppContext.Provider>)
