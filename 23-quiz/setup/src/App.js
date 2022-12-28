@@ -10,22 +10,35 @@ function App() {
     loading,
     answering,
     currentQuestion,
-    handleNextQuestion
+    handleNextQuestion,
+    checkAnswer,
+    questionIdx,
+    correctAnswer: correctCount
   } = useGlobalContext();
 
   if(loading) return <Loading />
   if(!answering) return <SetupForm />
 
+  const { correactAnswer } = currentQuestion;
+
   return (
     <>
+      <Modal />
       <div className='quiz'>
-        <p className='correct-answers'>Correct answers: 6 / 18</p>
+        <p className='correct-answers'>Correct answers: {correctCount} / {questionIdx}</p>
         <div className='container'>
           <h2>{ currentQuestion.question }</h2>
+          <span>{ correactAnswer }</span>
           <div className='btn-container'>
             {
-              currentQuestion.answers.map((answer) => (
-                <button className='answer-btn'>{ answer }</button>
+              currentQuestion.answers.map((answer, idx) => (
+                <button
+                  key={idx}
+                  className='answer-btn'
+                  onClick={() => checkAnswer(answer)}
+                >
+                  { answer }
+                </button>
               ))
             }
           </div>

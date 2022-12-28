@@ -12,6 +12,6 @@ export const QuestionsAdapter = (questions) => {
   return questions.map( ({question, correct_answer, incorrect_answers}) => ({
     question,
     answers: shuffleArray([...incorrect_answers, correct_answer]),
-    correactAnswer: shuffleArray([...incorrect_answers, correct_answer]).indexOf(correct_answer)
+    correctAnswer: correct_answer
   }))
 }

@@ -8,6 +8,12 @@ const table = {
   politics: 24,
 }
 
+const quizInitialState = {
+  totalQuestions: 10,
+  category: 'sports',
+  difficulty: 'easy' 
+}
+
 const API_ENDPOINT = 'https://opentdb.com/api.php?'
 
 const url = ''
@@ -19,11 +25,9 @@ const AppProvider = ({ children }) => {
   const [questionIdx, setQuestionIdx] = useState(0);
   const [loading, setLoading] = useState(false);
   const [answering, setAnswering] = useState(false);
-  const [quizSetup, setQuizSetup] = useState({
-    totalQuestions: 10,
-    category: 'sports',
-    difficulty: 'easy'
-  })
+  const [correctAnswer, setCorrectAnswer] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [quizSetup, setQuizSetup] = useState(quizInitialState)
 
   const fetchData = async (url) => {
     setLoading(true);
@@ -49,24 +53,52 @@ const AppProvider = ({ children }) => {
   const currentQuestion = questions[questionIdx];
 
   const handleNextQuestion = () => {
-    console.log(questions.length, quizSetup.totalQuestions)
-    if(questionIdx === quizSetup.totalQuestions) {
-      setAnswering(false);
-    }
+    setQuestionIdx((prevQuestionIdx) => {
+      const nextQuestionIdx = prevQuestionIdx + 1;
+      const lastQuestionIdx = questions.length - 1;
 
-    setQuestionIdx(questionIdx + 1)
+      if(nextQuestionIdx > lastQuestionIdx) return 0;
+
+      return nextQuestionIdx;
+    })
   }
+
+  const checkAnswer = (answer) => {
+    if(currentQuestion.correctAnswer === answer){
+      setCorrectAnswer( count => count + 1);
+    }
+    handleNextQuestion();
+  }
+
+  const resetQuiz = () => {
+    setCorrectAnswer(0);
+    setShowModal(false);
+    setAnswering(false);
+    setQuizSetup(quizInitialState)
+  }
+
+  useEffect(() => {
+    if(questionIdx == questions.length - 1) {
+      setShowModal(true);
+    }
+  },[questionIdx])
 
   return (
     <AppContext.Provider value={{
       quizSetup,
+      questions,
       setQuizSetup,
       handleSubmit,
       loading,
       answering,
       setAnswering,
       currentQuestion,
-      handleNextQuestion
+      handleNextQuestion,
+      questionIdx,
+      checkAnswer,
+      correctAnswer,
+      showModal,
+      resetQuiz
     }}>
       {children}
     </AppContext.Provider>)
