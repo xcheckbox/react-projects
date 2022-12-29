@@ -1,5 +1,5 @@
 export const PhotoAdapter = (photos) => {
-
+  console.log(photos)
   return photos.map( photo => ({
     id: photo.id,
     name: photo.name,
