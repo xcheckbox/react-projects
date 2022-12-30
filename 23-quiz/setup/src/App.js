@@ -27,7 +27,7 @@ function App() {
       <div className='quiz'>
         <p className='correct-answers'>Correct answers: {correctCount} / {questionIdx}</p>
         <div className='container'>
-          <h2>{ currentQuestion.question }</h2>
+          <h2 dangerouslySetInnerHTML={{ __html: currentQuestion.question }} />
           <span>{ correactAnswer }</span>
           <div className='btn-container'>
             {
@@ -36,9 +36,8 @@ function App() {
                   key={idx}
                   className='answer-btn'
                   onClick={() => checkAnswer(answer)}
-                >
-                  { answer }
-                </button>
+                  dangerouslySetInnerHTML={{ __html: answer }}
+                />
               ))
             }
           </div>
