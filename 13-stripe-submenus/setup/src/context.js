@@ -6,15 +6,23 @@ const AppContext = createContext();
 const AppProvider = ({ children }) => {
   const [openSidebar, setOpenSidebar] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState(false);
-  const [subMenuPosition, setSubmenuPosition] = useState({});
+  const [submenuPosition, setSubmenuPosition] = useState({});
+  const [submenuOptions, setSubmenuOptions] = useState({page: '', links: []})
 
   const toggleSidebar = (isOpen = true) => {
     setOpenSidebar(isOpen)
   }
 
   const handleOpenSubmenu = (option, position) => {
+    const submenu = sublinks.find(link => link.page === option);
+    console.log(submenu)
+    setSubmenuOptions(submenu);
     setSubmenuPosition(position)
     setOpenSubmenu(true);
+  }
+
+  const handleCloseSubmenu = () => {
+    setOpenSubmenu(false);
   }
 
   return (
@@ -24,7 +32,9 @@ const AppProvider = ({ children }) => {
       openSubmenu,
       toggleSidebar,
       handleOpenSubmenu,
-      subMenuPosition
+      handleCloseSubmenu,
+      submenuPosition,
+      submenuOptions
     }}>
       { children }
     </AppContext.Provider>
