@@ -19,10 +19,6 @@ const Submenu = () => {
 
   }, [submenuPosition, page, links])
 
-  useEffect(() => {
-    console.log(openSubmenu)
-
-  }, [openSubmenu])
   return (
     <div className={`${openSubmenu ? 'submenu show' : 'submenu'}`} ref={container}>
       <section>

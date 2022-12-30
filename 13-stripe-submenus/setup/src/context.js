@@ -15,7 +15,6 @@ const AppProvider = ({ children }) => {
 
   const handleOpenSubmenu = (option, position) => {
     const submenu = sublinks.find(link => link.page === option);
-    console.log(submenu)
     setSubmenuOptions(submenu);
     setSubmenuPosition(position)
     setOpenSubmenu(true);

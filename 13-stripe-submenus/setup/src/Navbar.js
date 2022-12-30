@@ -13,7 +13,6 @@ const Navbar = () => {
     const center = (optionBtn.left + optionBtn.right) / 2;
     const bottom = optionBtn.bottom - 3;
 
-    console.log('OPENs', text)
     handleOpenSubmenu(text, { center, bottom });
   }
 
